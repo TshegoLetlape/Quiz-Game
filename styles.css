@@ -10,43 +10,61 @@ body {
 
 }
 
-nav {
-  height: 100%;
-  width: 100%;
-}
-
-
-.nav-container {
-  display: flex;
-}
 
 .logo {
   height: 50px;
 }
 
-.nav-menu > ul {
-  display: flex;
-}
+/* Update your existing CSS or add this to your styles.css file */
 
-.container {
+nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 100vh;
-
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
 }
 
-.game-header-left-score {
-  color:#b11764;
-  font-size: 20px;
+.nav-logo img {
+  height: 50px;
 }
 
-.game-header-left-lives {
-  color:#b11764;
-  font-size: 20px;
+.nav-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  /* Display the ul as a flex container */
 }
 
-.game-header-right-timer {
-  color:#b11764;
-  font-size: 20px;
+.nav-menu ul li {
+  margin-left: 80px;
+  /* Add margin to separate menu items */
 }
+
+.nav-menu ul li:first-child {
+  margin-left: 0 
+}
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+  }
+
+  .game-header-left-score {
+    color: #b11764;
+    font-size: 20px;
+  }
+
+  .game-header-left-lives {
+    color: #b11764;
+    font-size: 20px;
+  }
+
+  .game-header-right-timer {
+    color: #b11764;
+    font-size: 20px;
+  }
