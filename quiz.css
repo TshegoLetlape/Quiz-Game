@@ -1,0 +1,42 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ff4367;
+  ;
+}
+
+
+.quiz-container {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+
+.time {
+  color: whitesmoke;
+}
+
+.quiz-header {
+  margin-top: -10%;
+  color: #feeef1;
+  font-size: 20px;
+
+
+}
+
+.question-number {
+  margin-top: -10%;
+}
+
+button {
+  height: 50px;
+  width: 120px;
+  border-radius: 20px;
+  background-color: #4b6a6d;
+  color:#feeef1;
+}
