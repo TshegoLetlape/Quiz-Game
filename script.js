@@ -97,10 +97,12 @@ const scoreDisplay = document.getElementById("score-value");
 
 let currentQuiz = 0;
 let score = 0;
+let answered = false;
 
 loadQuiz();
 
 function loadQuiz() {
+  answered = false;
   deselectAnswers();
   const currentQuizData = quizData[currentQuiz];
   questionEl.innerText = currentQuizData.question;
@@ -127,21 +129,29 @@ function getSelected() {
 }
 
 submitBtn.addEventListener("click", () => {
-  const answer = getSelected();
-  if (answer) {
-    if (answer === quizData[currentQuiz].correct) {
-      score++;
-      scoreDisplay.textContent = score;
+  if (!answered) {
+    // Check if the user has not already answered this question
+    const answer = getSelected();
+    if (answer) {
+      answered = true; // Mark the question as answered
+      if (answer === quizData[currentQuiz].correct) {
+        score++;
+        scoreDisplay.textContent = score;
+      }
     }
   }
-  currentQuiz++;
 
-  if (currentQuiz < quizData.length) {
-    loadQuiz();
-  } else {
-    quiz.innerHTML = `
-      <h2>You answered ${score}/${quizData.length} questions correctly</h2>
-      <button onclick="location.reload()">Reload</button>
-    `;
+  if (answered) {
+    // Only proceed to the next question if the current one has been answered
+    currentQuiz++;
+
+    if (currentQuiz < quizData.length) {
+      loadQuiz();
+    } else {
+      quiz.innerHTML = `
+        <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+        <button onclick="location.reload()">Reload</button>
+      `;
+    }
   }
 });
