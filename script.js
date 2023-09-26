@@ -130,10 +130,9 @@ function getSelected() {
 
 submitBtn.addEventListener("click", () => {
   if (!answered) {
-    // Check if the user has not already answered this question
     const answer = getSelected();
     if (answer) {
-      answered = true; // Mark the question as answered
+      answered = true;
       if (answer === quizData[currentQuiz].correct) {
         score++;
         scoreDisplay.textContent = score;
@@ -142,7 +141,6 @@ submitBtn.addEventListener("click", () => {
   }
 
   if (answered) {
-    // Only proceed to the next question if the current one has been answered
     currentQuiz++;
 
     if (currentQuiz < quizData.length) {
