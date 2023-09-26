@@ -1,29 +1,135 @@
-document.addEventListener("DOMContentLoaded", function() {
-  // Wait for the DOM to be fully loaded
+const quizData = [
+  {
+    question: "What keyword is used to declare a variable in JavaScript?",
+    a: "Variable",
+    b: "Define",
+    c: "Declare",
+    d: "Var",
+    correct: "d",
+  },
+  {
+    question: "Which of the following is not a JavaScript data type?",
+    a: "Boolean",
+    b: "String",
+    c: "Array",
+    d: "Integer",
+    correct: "d",
+  },
+  {
+    question:
+      "Which method is used to add an HTML element to the end of a parent element in JavaScript?",
+    a: "addToEnd()",
+    b: "insertElement()",
+    c: "appendChild()",
+    d: "addElement()",
+    correct: "c",
+  },
+  {
+    question: "",
+    a: "",
+    b: "",
+    c: "",
+    d: "",
+    correct: "",
+  },
+  {
+    question: "",
+    a: "",
+    b: "",
+    c: "",
+    d: "",
+    correct: "",
+  },
+  {
+    question: "",
+    a: "",
+    b: "",
+    c: "",
+    d: "",
+    correct: "",
+  },
+  {
+    question: "",
+    a: "",
+    b: "",
+    c: "",
+    d: "",
+    correct: "",
+  },
+  {
+    question: "",
+    a: "",
+    b: "",
+    c: "",
+    d: "",
+    correct: "",
+  },
+  {
+    question: "",
+    a: "",
+    b: "",
+    c: "",
+    d: "",
+    correct: "",
+  },
+  {
+    question: "",
+    a: "",
+    b: "",
+    c: "",
+    d: "",
+    correct: "",
+  },
+];
+const quiz = document.getElementById("quiz");
+const answerEls = document.querySelectorAll(".answer");
+const questionEl = document.getElementById("question");
+const a_text = document.getElementById("a_text");
+const b_text = document.getElementById("b_text");
+const c_text = document.getElementById("c_text");
+const d_text = document.getElementById("d_text");
+const submitBtn = document.getElementById("submit");
 
-  class QuizButton {
-    constructor(buttonId, targetUrl) {
-      this.button = document.getElementById(buttonId);
-      this.targetUrl = targetUrl;
+let currentQuiz = 0;
+let score = 0;
 
-      this.setupClickHandler();
+loadQuiz();
+
+function loadQuiz() {
+  deselectAnswers();
+  const currentQuizData = quizData[currentQuiz];
+  questionEl.innerText = currentQuizData.question;
+  a_text.innerText = currentQuizData.a;
+  b_text.innerText = currentQuizData.b;
+  c_text.innerText = currentQuizData.c;
+  d_text.innerText = currentQuizData.d;
+}
+
+function deselectAnswers() {
+  answerEls.forEach((answerEl) => (answerEl.checked = false));
+}
+
+function getSelected() {
+  let answer;
+  answerEls.forEach((answerEl) => {
+    if (answerEl.checked) {
+      answer = answerEl.id;
     }
-
-    setupClickHandler() {
-      if (this.button) {
-        this.button.addEventListener("click", () => {
-          this.navigateToQuiz();
-        });
-      }
-    }
-
-    navigateToQuiz() {
-      if (this.targetUrl) {
-        window.location.href = this.targetUrl;
-      }
-    }
+  });
+  return answer;
+}
+submitBtn.addEventListener("click", () => {
+  const answer = getSelected();
+  if (answer) {
+    if (answer === quizData[currentQuiz].correct) score++;
   }
+  currentQuiz++;
 
-  // Create an instance of the QuizButton class
-  const playButton = new QuizButton("playButton", "quiz.html");
+  if (currentQuiz < quizData.length) {
+    loadQuiz();
+  } else {
+    quiz.innerHTML = `
+                <h2>You answered ${score}/${quizData.length} questions correctly</h2>
+                <button onclick="location.reload()">Reload</button>  `;
+  }
 });
